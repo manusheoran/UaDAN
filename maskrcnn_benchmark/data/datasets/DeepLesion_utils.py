@@ -6,7 +6,7 @@ import numpy as np
 import json
 from collections import Counter
 #from maskrcnn.utils.miscellaneous import unique
-from fcos_core.config import cfg
+from maskrcnn_benchmark.config import cfg
 
 
 def gen_mask_polygon_from_recist(recist):
