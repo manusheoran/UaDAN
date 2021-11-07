@@ -86,7 +86,7 @@ def _compute_aspect_ratios(dataset):
 def make_batch_data_sampler(
     dataset, sampler, aspect_grouping, images_per_batch, num_iters=None, start_iter=0
 ):
-    if aspect_grouping:
+    if not aspect_grouping:
         if not isinstance(aspect_grouping, (list, tuple)):
             aspect_grouping = [aspect_grouping]
         aspect_ratios = _compute_aspect_ratios(dataset)
