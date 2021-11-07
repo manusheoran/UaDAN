@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from scipy.ndimage.morphology import binary_fill_holes, binary_opening, binary_dilation
 import nibabel as nib
 
-from fcos_core.config import cfg
+from maskrcnn_benchmark.config import cfg
 
 
 def load_prep_img(data_dir, imname, spacing, slice_intv, do_clip=False, num_slice=3, is_train=False):
