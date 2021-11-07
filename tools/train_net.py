@@ -17,7 +17,7 @@ from maskrcnn_benchmark.solver import make_lr_scheduler
 from maskrcnn_benchmark.solver import make_optimizer
 from maskrcnn_benchmark.engine.inference import inference
 from maskrcnn_benchmark.engine.trainer import do_train
-#from maskrcnn_benchmark.engine.trainer import do_da_train
+from maskrcnn_benchmark.engine.trainer import do_da_train
 from maskrcnn_benchmark.modeling.detector import build_detection_model
 from maskrcnn_benchmark.utils.checkpoint import DetectronCheckpointer
 from maskrcnn_benchmark.utils.collect_env import collect_env_info
