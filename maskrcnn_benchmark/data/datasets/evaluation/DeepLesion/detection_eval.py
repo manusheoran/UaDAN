@@ -4,7 +4,7 @@
 import numpy as np
 from scipy import interpolate
 
-from fcos_core.config import cfg
+from maskrcnn_benchmark.config import cfg
 
 
 def sens_at_FP(boxes_all, gts_all, avgFP, iou_th):
