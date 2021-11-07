@@ -13,7 +13,7 @@ import torch
 from PIL import Image
 
 
-from fcos_core.data import transforms as T1
+from maskrcnn_benchmark.data import transforms as T1
 
 
 def transform_instance_annotations(
