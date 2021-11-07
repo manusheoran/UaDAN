@@ -6,8 +6,8 @@ import torch
 import numpy as np
 from scipy.spatial.distance import cdist, pdist, squareform
 
-from fcos_core.config import cfg
-from fcos_core.data.datasets.evaluation.DeepLesion.tagging_eval import score2label
+from maskrcnn_benchmark.config import cfg
+from maskrcnn_benchmark.data.datasets.evaluation.DeepLesion.tagging_eval import score2label
 
 
 def post_process_results(result, info):
