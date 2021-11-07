@@ -66,9 +66,7 @@ _C.INPUT.IMG_DO_CLIP=  True  # clip the black borders of CT images
 _C.INPUT.SLICE_INTV=  2  # slice interval in mm after interpolation. If 0, only use one slice thus no 3D context
 _C.INPUT.NUM_SLICES=  3  # multi-slice input (data-level fusion in 3DCE paper) to incorporate 3D context
 _C.INPUT.NUM_IMAGES_3DCE=  1
-_C.INPUT.PIXEL_MEAN = [102.9801, 115.9465, 122.7717]
-# Values to be used for image normalization
-_C.INPUT.PIXEL_STD = [1., 1., 1.]
+
 _C.INPUT.DATA_AUG_SCALE= [.8, 1.2]
 _C.INPUT.DATA_AUG_3D= -0.5
 _C.INPUT.WINDOWING = [-1024, 3071]
@@ -386,7 +384,7 @@ _C.SOLVER.GAMMA = 0.1
 _C.SOLVER.STEPS = (30000,)
 
 _C.SOLVER.WARMUP_FACTOR = 1.0 / 3
-_C.SOLVER.WARMUP_ITERS = 500
+_C.SOLVER.WARMUP_ITERS = 0
 _C.SOLVER.WARMUP_METHOD = "linear"
 
 _C.SOLVER.CHECKPOINT_PERIOD = 2500
