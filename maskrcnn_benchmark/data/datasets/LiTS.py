@@ -20,9 +20,10 @@ from maskrcnn_benchmark.data.transforms.build import build_d2transforms
 class LiTSDataset(object):
 
     def __init__(
-        self, split, data_dir, ann_file, transforms=None
+        self, split, data_dir, ann_file, transforms=None, is_source= True
     ):
         self.transforms = transforms
+        self.is_source = is_source
         self.split = split
         self.data_path = data_dir
         self.classes = ['__background__',  # always index 0
@@ -115,7 +116,8 @@ class LiTSDataset(object):
         classes = torch.ones(num_boxes, dtype=torch.int)  # lesion/nonlesion
         target.add_field("labels", classes)
         
-
+        domain_labels = torch.ones_like(classes, dtype=torch.uint8) if self.is_source else torch.zeros_like(classes, dtype=torch.uint8)
+        target.add_field("is_source", domain_labels)
   
 
         infos = {'im_index': index, 'lesion_idxs': lesion_idx_grouped, 'image_fn': image_fn, 
