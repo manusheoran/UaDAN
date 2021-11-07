@@ -109,7 +109,7 @@ def main():
     parser = argparse.ArgumentParser(description="PyTorch Object Detection Training")
     parser.add_argument(
         "--config-file",
-        default="configs/UaDAN_City2Vistas.yaml",
+        default="",
         metavar="FILE",
         help="path to config file",
         type=str,
