@@ -1,7 +1,7 @@
 # Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved.
 from . import transforms as T
-from fcos_core.data import transforms as T1
-from fcos_core.data.transforms import detection_utils as utils
+from maskrcnn_benchmark.data import transforms as T1
+from maskrcnn_benchmark.data.transforms import detection_utils as utils
 def build_d2transforms(image,bbox):
   transform_list = [
         T1.RandomFlip(prob=0.40, horizontal=False, vertical=True),
