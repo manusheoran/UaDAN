@@ -8,8 +8,8 @@ import torch
 import os
 from .detection_eval import sens_at_FP
 from .tagging_eval import compute_all_acc_wt, compute_thresholds, print_accs
-from fcos_core.config import cfg
-from fcos_core.utils.print_info import save_acc_to_file
+from maskrcnn_benchmark.config import cfg
+from maskrcnn_benchmark.utils.print_info import save_acc_to_file
 
 
 def do_evaluation(
