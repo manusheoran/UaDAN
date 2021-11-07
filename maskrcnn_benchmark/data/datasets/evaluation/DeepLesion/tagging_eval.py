@@ -6,7 +6,7 @@ from sklearn.metrics import roc_curve, auc
 import torch
 
 #from fcos_core.data.datasets.DeepLesion_utils import unique
-from fcos_core.config import cfg
+from maskrcnn_benchmark.config import cfg
 
 
 def score2label_np(pred_scores, K=5):
