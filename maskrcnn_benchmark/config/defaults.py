@@ -60,6 +60,22 @@ _C.INPUT.PIXEL_STD = [1., 1., 1.]
 # Convert image to BGR format (for Caffe2 models), in range 0-255
 _C.INPUT.TO_BGR255 = True
 
+_C.INPUT.NORM_SPACING =  .8  # first normalize image size to NORM_SPACING mm/pixel (so the smaller this value, the larger the image).
+_C.INPUT.MAX_IM_SIZE=  512  # then restrict the maximum image size to MAX_SIZE
+_C.INPUT.IMG_DO_CLIP=  True  # clip the black borders of CT images
+_C.INPUT.SLICE_INTV=  2  # slice interval in mm after interpolation. If 0, only use one slice thus no 3D context
+_C.INPUT.NUM_SLICES=  3  # multi-slice input (data-level fusion in 3DCE paper) to incorporate 3D context
+_C.INPUT.NUM_IMAGES_3DCE=  1
+_C.INPUT.PIXEL_MEAN = [102.9801, 115.9465, 122.7717]
+# Values to be used for image normalization
+_C.INPUT.PIXEL_STD = [1., 1., 1.]
+_C.INPUT.DATA_AUG_SCALE= [.8, 1.2]
+_C.INPUT.DATA_AUG_3D= -0.5
+_C.INPUT.WINDOWING = [-1024, 3071]
+_C.INPUT.DATA_AUG_POSITION =  True
+_C.MODEL.TAG_ON= True
+_C.MODEL.MASK_ON= False
+_C.MODEL.REFINE_ON= False
 
 # -----------------------------------------------------------------------------
 # Dataset
@@ -392,7 +408,8 @@ _C.TEST.EXPECTED_RESULTS_SIGMA_TOL = 4
 _C.TEST.IMS_PER_BATCH = 8
 # Number of detections per image
 _C.TEST.DETECTIONS_PER_IMG = 100
-
+_C.TEST.VAL_FROC_FP = [.5, 1, 2, 4, 8, 16]  # compute the sensitivity at val_avg_fp FPs per image
+_C.TEST.IOU_TH = .5
 
 # ---------------------------------------------------------------------------- #
 # Misc options
