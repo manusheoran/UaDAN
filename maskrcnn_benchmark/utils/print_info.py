@@ -6,7 +6,7 @@ import numpy as np
 from openpyxl import load_workbook, Workbook
 import torch
 
-from fcos_core.config import cfg
+from maskrcnn_benchmark.config import cfg
 #from .miscellaneous import unique
 
 
