@@ -12,6 +12,7 @@ from maskrcnn_benchmark.data.datasets.evaluation import evaluate
 from ..utils.comm import is_main_process
 from ..utils.comm import all_gather
 from ..utils.comm import synchronize
+from maskrcnn_benchmark.data.datasets.evaluation.DeepLesion.DL_eval import do_evaluation
 
 
 def compute_on_dataset(model, data_loader, device):
@@ -19,14 +20,18 @@ def compute_on_dataset(model, data_loader, device):
     results_dict = {}
     cpu_device = torch.device("cpu")
     for i, batch in enumerate(tqdm(data_loader)):
-        images, targets, image_ids = batch
+        images, targets, infos = batch
         images = images.to(device)
         with torch.no_grad():
             output = model(images)
             output = [o.to(cpu_device) for o in output]
-        results_dict.update(
-            {img_id: result for img_id, result in zip(image_ids, output)}
-        )
+        for p in range(len(infos)):
+              d = {'target': targets[p], 'result': output[p], 'info': infos[p]}
+              results_dict.update({infos[p]['image_fn']: d})
+#         results_dict.update(
+#             {img_id: result for img_id, result in zip(image_ids, output)}
+#         )
+        
     return results_dict
 
 
@@ -85,47 +90,16 @@ def inference(
     #     )
     # )
 
-    predictions = _accumulate_predictions_from_multiple_gpus(predictions)
+    #predictions = _accumulate_predictions_from_multiple_gpus(predictions)
     if not is_main_process():
         return
 
-    # all_boxes = [[] for _ in range(9)]
-    all_boxes = [[[] for _ in range(len(predictions))] for _ in range(21)]
-
-    for ind, pred in enumerate(predictions):
-        img_info = dataset.get_img_info(ind)
-        if len(pred) == 0:
-            continue
-
-        image_width = img_info["width"]
-        image_height = img_info["height"]
-        pred = pred.resize((image_width, image_height))
-
-        labels = pred.get_field("labels").numpy()
-        scores = pred.get_field("scores").numpy()
-        bbox = pred.bbox.numpy()
-
-        for cls in np.unique(labels):
-            box = bbox[labels==cls,:]
-            score = scores[labels==cls][:, np.newaxis]
-            gt = np.append(box,score,axis=1)
-            all_boxes[cls][ind] = gt
-
-    import pickle
-    with open(output_folder + "/all_boxes.pkl", 'wb') as f:
-        pickle.dump(all_boxes, f, pickle.HIGHEST_PROTOCOL)
+    
 
     if output_folder:
         torch.save(predictions, os.path.join(output_folder, "predictions.pth"))
 
-    extra_args = dict(
-        box_only=box_only,
-        iou_types=iou_types,
-        expected_results=expected_results,
-        expected_results_sigma_tol=expected_results_sigma_tol,
-    )
+    
 
-    return evaluate(dataset=dataset,
-                    predictions=predictions,
-                    output_folder=output_folder,
-                    **extra_args)
+    return do_evaluation(dataset, predictions, False, output_folder)
+
