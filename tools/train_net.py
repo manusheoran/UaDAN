@@ -53,6 +53,8 @@ def train(cfg, local_rank, distributed):
     )
     extra_checkpoint_data = checkpointer.load(cfg.MODEL.WEIGHT, resume = False)
     arguments.update(extra_checkpoint_data)
+    
+    arguments["iteration"] = 0
 
     checkpoint_period = cfg.SOLVER.CHECKPOINT_PERIOD
 
