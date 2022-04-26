@@ -22,7 +22,7 @@ def main():
     parser = argparse.ArgumentParser(description="PyTorch Object Detection Inference")
     parser.add_argument(
         "--config-file",
-        default="/configs/UaDAN_City2Vistas.yaml",
+        default="./configs/UaDAN_City2Vistas.yaml",
         metavar="FILE",
         help="path to config file",
     )
