@@ -30,7 +30,7 @@ class DeepLesionDataset(object):
                         'lesion']
         self.num_classes = len(self.classes)
         #ann_file = "/gdrive/MyDrive/TCS/DL_info_test.csv" 
-        ann_file = "/data/nihcc/FCOS/csv_files_datasets/DL_info_test.csv"  #DL_train_liver, DL_info_all,  DL_info_test
+        ann_file = "/data/nihcc/FCOS/csv_files_datasets/DL_info_all.csv"  #DL_train_liver, DL_info_all,  DL_info_test
         self.loadinfo(ann_file)
         self.image_fn_list, self.lesion_idx_grouped = self.load_split_index()
         self.num_images = len(self.image_fn_list)
