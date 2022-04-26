@@ -6,7 +6,7 @@ MODEL:
   ENT_WEIGHTED_ON: True
   META_ARCHITECTURE: "GeneralizedRCNN"
   MASK_ON: False
-  WEIGHT: "catalog://ImageNetPretrained/MSRA/R-50"    #"catalog://ImageNetPretrained/MSRA/R-50"
+  WEIGHT: "/data/nihcc/FCOS/UaDAN/DL_only/model_0045000.pth"    #"catalog://ImageNetPretrained/MSRA/R-50"
   DOMAIN_ADAPTATION_ON: False
   RPN:
     PRE_NMS_TOP_N_TEST: 6000
