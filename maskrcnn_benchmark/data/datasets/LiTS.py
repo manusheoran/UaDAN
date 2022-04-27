@@ -29,7 +29,7 @@ class LiTSDataset(object):
         self.classes = ['__background__',  # always index 0
                         'lesion']
         self.num_classes = len(self.classes)
-        ann_file = "/data/nihcc/FCOS/lits_train.csv"
+        ann_file = "/data/nihcc/FCOS/csv_files_datasets/lits_test.csv" #lits_test.csv, lits_train
         #ann_file = "/gdrive/MyDrive/TCS/LiTS/lits_test.csv"
         self.loadinfo(ann_file)
         self.image_fn_list, self.lesion_idx_grouped = self.load_split_index()
