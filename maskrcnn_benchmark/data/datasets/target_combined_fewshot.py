@@ -7,17 +7,17 @@ import logging
 import json
 
 #from fcos_core.data.datasets.load_ct_img import load_prep_img as load_prep_img_dl
-from fcos_core.data.datasets.load_ct_img_kits import load_prep_img as load_prep_img_kits
-from fcos_core.data.datasets.load_ct_img_lits import load_prep_img as load_prep_img_lits
-from fcos_core.data.datasets.load_ct_img_ircadb import load_prep_img as load_prep_img_ircadb
+from maskrcnn_benchmark.data.datasets.load_ct_img_kits import load_prep_img as load_prep_img_kits
+from maskrcnn_benchmark.data.datasets.load_ct_img_lits import load_prep_img as load_prep_img_lits
+from maskrcnn_benchmark.data.datasets.load_ct_img_ircadb import load_prep_img as load_prep_img_ircadb
 
 
-from fcos_core.structures.bounding_box import BoxList
-from fcos_core.structures.segmentation_mask import SegmentationMask
-from fcos_core.config import cfg
-from fcos_core.data.datasets.DeepLesion_utils import load_tag_dict_from_xlsfile, gen_mask_polygon_from_recist, load_lesion_tags
-from fcos_core.data.datasets.DeepLesion_utils import gen_parent_list, gen_exclusive_list, gen_children_list
-from fcos_core.data.transforms.build import build_d2transforms
+from maskrcnn_benchmark.structures.bounding_box import BoxList
+from maskrcnn_benchmark.structures.segmentation_mask import SegmentationMask
+from maskrcnn_benchmark.config import cfg
+from maskrcnn_benchmark.data.datasets.DeepLesion_utils import load_tag_dict_from_xlsfile, gen_mask_polygon_from_recist, load_lesion_tags
+from maskrcnn_benchmark.data.datasets.DeepLesion_utils import gen_parent_list, gen_exclusive_list, gen_children_list
+from maskrcnn_benchmark.data.transforms.build import build_d2transforms
 
 class combinedDataset_fewshot(object):
 
