@@ -15,7 +15,7 @@ def load_prep_img(data_dir, imname, spacing, slice_intv, do_clip=False, num_slic
     im, mask = load_multislice_img_16bit_png(data_dir, imname, slice_intv, do_clip, num_slice)
 
     if not is_fewshot_dl_hu:
-        im = windowing(im, cfg.INPUT.WINDOWING_kidney)  # cfg.INPUT.WINDOWING
+        im = windowing(im, cfg.INPUT.WINDOWING)  # cfg.INPUT.WINDOWING
         
     else: 
         im = windowing(im, cfg.INPUT.WINDOWING)  # cfg.INPUT.WINDOWING
