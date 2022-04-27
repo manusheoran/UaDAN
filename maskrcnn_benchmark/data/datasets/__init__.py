@@ -20,5 +20,4 @@ from .target_combined_pseudo import combinedDataset_pseudo
 
 __all__ = ["COCODataset", "ConcatDataset", "PascalVOCDataset","DeepLesionDataset","LiTSDataset" ,
           "KiTSDataset", "ircadbDataset","combinedDataset_uda", "combinedDataset_fewshot",
-           "combinedDataset_pseudo", "DL_target_combinedDataset"
-          ]
+           "combinedDataset_pseudo", "DL_target_combinedDataset"]
