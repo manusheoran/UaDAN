@@ -12,10 +12,36 @@ class DatasetCatalog(object):
             "split": "train",
             "ann_file": "DeepLesion/DL_info.csv",
         },
+        "combined_train": {
+            "data_dir": "combined/npy_images",
+            "split": "train",
+            "ann_file": "combined/combined_info.csv",
+        },
         "lits_train": {
             "data_dir": "LiTS/npy_images",
             "split": "train",
             "ann_file": "LiTS/lits_info.csv",
+        },
+        "target_train_fewshot": {
+            "data_dir": "LiTS/npy_images",
+            "split": "train",
+            "ann_file": "LiTS/lits_info.csv",
+        },
+        "target_train_pseudo": {
+            "data_dir": "LiTS/npy_images",
+            "split": "train",
+            "ann_file": "LiTS/lits_info.csv",
+        },
+        "kits_train": {
+            "data_dir": "KiTS/npy_images",
+            "split": "train",
+            "ann_file": "KiTS/kits_info.csv",
+        },
+        
+        "ircadb_train": {
+            "data_dir": "Ircadb/npy_images",
+            "split": "train",
+            "ann_file": "Ircadb/ircadb_info.csv",
         },
         "coco_2017_train": {
             "img_dir": "coco/train2017",
@@ -239,6 +265,31 @@ class DatasetCatalog(object):
                 factory="DeepLesionDataset",
                 args=args,
             )
+        if "combined" in name:
+            data_dir = DatasetCatalog.DATA_DIR
+            attrs = DatasetCatalog.DATASETS[name]
+            args = dict(
+                split=attrs["split"],
+                data_dir=os.path.join(data_dir, attrs["data_dir"]),
+                ann_file=os.path.join(data_dir, attrs["ann_file"]),
+            )
+            return dict(
+                factory="combinedDataset_uda",
+                args=args,
+            )
+        if "kits" in name:
+            data_dir = DatasetCatalog.DATA_DIR
+            attrs = DatasetCatalog.DATASETS[name]
+            args = dict(
+                split=attrs["split"],
+                data_dir=os.path.join(data_dir, attrs["data_dir"]),
+                ann_file=os.path.join(data_dir, attrs["ann_file"]),
+            )
+            return dict(
+                factory="KiTSDataset",
+                args=args,
+            )
+        
         if "lits" in name:
             data_dir = DatasetCatalog.DATA_DIR
             attrs = DatasetCatalog.DATASETS[name]
@@ -251,6 +302,47 @@ class DatasetCatalog(object):
                 factory="LiTSDataset",
                 args=args,
             )
+        
+        if "ircadb" in name:
+            data_dir = DatasetCatalog.DATA_DIR
+            attrs = DatasetCatalog.DATASETS[name]
+            args = dict(
+                split=attrs["split"],
+                data_dir=os.path.join(data_dir, attrs["data_dir"]),
+                ann_file=os.path.join(data_dir, attrs["ann_file"]),
+            )
+            return dict(
+                factory="ircadbDataset",
+                args=args,
+            )
+        
+        
+        if "fewshot" in name:
+            data_dir = DatasetCatalog.DATA_DIR
+            attrs = DatasetCatalog.DATASETS[name]
+            args = dict(
+                split=attrs["split"],
+                data_dir=os.path.join(data_dir, attrs["data_dir"]),
+                ann_file=os.path.join(data_dir, attrs["ann_file"]),
+            )
+            return dict(
+                factory="combinedDataset_fewshot",
+                args=args,
+            )
+        
+        if "pseudo" in name:
+            data_dir = DatasetCatalog.DATA_DIR
+            attrs = DatasetCatalog.DATASETS[name]
+            args = dict(
+                split=attrs["split"],
+                data_dir=os.path.join(data_dir, attrs["data_dir"]),
+                ann_file=os.path.join(data_dir, attrs["ann_file"]),
+            )
+            return dict(
+                factory="combinedDataset_pseudo",
+                args=args,
+            )
+        
         if "coco" in name:
             data_dir = DatasetCatalog.DATA_DIR
             attrs = DatasetCatalog.DATASETS[name]
