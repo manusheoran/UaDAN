@@ -4,9 +4,9 @@ from maskrcnn_benchmark.data import transforms as T1
 from maskrcnn_benchmark.data.transforms import detection_utils as utils
 def build_d2transforms(image,bbox):
   transform_list = [
-#         T1.RandomFlip(prob=0.40, horizontal=False, vertical=True),
-#         T1.RandomFlip(prob=0.40, horizontal=True, vertical=False),
-#         T1.RandomExtent([0.8,1.2], [0.125,0.125]),
+        T1.RandomFlip(prob=0.40, horizontal=False, vertical=True),
+        T1.RandomFlip(prob=0.40, horizontal=True, vertical=False),
+        T1.RandomExtent([0.8,1.2], [0.125,0.125]),
         T1.Resize((512,512))
     ]
 
@@ -24,7 +24,7 @@ def build_d2transforms(image,bbox):
 def build_transforms(cfg, is_train=True):
     if 'DeepLesion' in cfg.DATASETS.SOURCE_TRAIN[0]:
         return None 
-    if 'lits' in cfg.DATASETS.TARGET_TRAIN[0]:
+    if 'train' in cfg.DATASETS.TARGET_TRAIN[0]:
         return None 
     if is_train:
         if cfg.INPUT.MIN_SIZE_RANGE_TRAIN[0] == -1:
