@@ -32,16 +32,17 @@ def do_evaluation(
     torch.save(det_res, os.path.join(output_folder, "coco_results.pth"))
     print(det_res)
     # multi-label lesion tagging
-    if not cfg.MODEL.TAG_ON:
-        tag_res = eval_DL_tagging(predictions, logger, is_validation)
+#     if not cfg.MODEL.TAG_ON:
+#         tag_res = eval_DL_tagging(predictions, logger, is_validation)
 
-    # weakly-supervised segmentation
-    if cfg.MODEL.MASK_ON:
-        logger.info('\nSegmentation accuracy:')
-        seg_res = eval_DL_segmentation(predictions, logger)
+#     # weakly-supervised segmentation
+#     if cfg.MODEL.MASK_ON:
+#         logger.info('\nSegmentation accuracy:')
+#         seg_res = eval_DL_segmentation(predictions, logger)
 
     print('mean sensi',np.mean(det_res[:4]))
-    return np.mean(det_res[:4])
+    #return np.mean(det_res[:4])
+    return det_res
 
 
 def eval_DL_detection(predictions, logger, is_validation):
