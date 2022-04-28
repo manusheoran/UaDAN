@@ -71,7 +71,7 @@ def main():
             output_folders[idx] = output_folder
     data_loaders_val = make_data_loader(cfg, is_train=False, is_distributed=distributed)
    
-    results, coco_results, mAP, AP, mAP_segm, AP_segm = inference(
+    sensitivity = inference(
         model,
         data_loaders_val[0],
         dataset_name=dataset_names[0],
