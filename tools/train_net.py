@@ -84,25 +84,25 @@ def train(cfg, local_rank, distributed):
             is_pseudo = False,
         )
         
-        target_data_loader["target_fewshot"] = make_data_loader(
-            cfg,
-            is_train=True,
-            is_source=False,
-            is_distributed=distributed,
-            start_iter=arguments["iteration"],
-            is_fewshot = True,
-            is_pseudo = False,
-        )
+#         target_data_loader["target_fewshot"] = make_data_loader(
+#             cfg,
+#             is_train=True,
+#             is_source=False,
+#             is_distributed=distributed,
+#             start_iter=arguments["iteration"],
+#             is_fewshot = True,
+#             is_pseudo = False,
+#         )
         
-        target_data_loader["target_pseudo"] = make_data_loader(
-            cfg,
-            is_train=True,
-            is_source=False,
-            is_distributed=distributed,
-            start_iter=arguments["iteration"],
-            is_fewshot = False,
-            is_pseudo = True,
-        )
+#         target_data_loader["target_pseudo"] = make_data_loader(
+#             cfg,
+#             is_train=True,
+#             is_source=False,
+#             is_distributed=distributed,
+#             start_iter=arguments["iteration"],
+#             is_fewshot = False,
+#             is_pseudo = True,
+#         )
 
         do_da_train(
             model,
