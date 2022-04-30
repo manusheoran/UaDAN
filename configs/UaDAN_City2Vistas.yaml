@@ -27,9 +27,7 @@ DATASETS:
   TRAIN: ("DeepLesion_train",)
   SOURCE_TRAIN: ("DeepLesion_train",)
   TARGET_TRAIN: ("lits_train",)
-  TARGET_TRAIN_fewshot: ("target_train_fewshot", )
-  TARGET_TRAIN_pseudo: ("target_train_pseudo", )
-  TEST: ("kits_train","lits_train","ircadb_train","combined_train")
+  TEST: ("lits_train")
 INPUT:
   MIN_SIZE_TRAIN: (1024,)
   MAX_SIZE_TRAIN: 2048
