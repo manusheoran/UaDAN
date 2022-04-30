@@ -44,7 +44,7 @@ class LiTSDataset(object):
 #                 self.logger.info('loading 500 hand-labeled test tags')
 #                 self._process_manual_annot_test_tags()
 
-        self.logger.info('DeepLesion %s num_images: %d' % (split, self.num_images))
+        self.logger.info('LiTS %s num_images: %d' % (split, self.num_images))
 
     
 
