@@ -80,8 +80,8 @@ def load_multislice_img_16bit_png(data_dir, imname, slice_intv, do_clip, num_sli
 
     mask = get_mask(im_cur) if do_clip else None
 
-    if cfg.INPUT.SLICE_INTV == 0 or np.isnan(slice_intv) or slice_intv < 0:
-        ims = [im_cur] * num_slice  # only use the central slice
+#     if cfg.INPUT.SLICE_INTV == 0 or np.isnan(slice_intv) or slice_intv < 0:
+#         ims = [im_cur] * num_slice  # only use the central slice
 
     else:
         ims = [im_cur]
