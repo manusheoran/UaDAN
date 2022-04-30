@@ -31,7 +31,7 @@ class combinedDataset_uda(object):
         self.classes = ['__background__',  # always index 0
                         'lesion']
         self.num_classes = len(self.classes)
-        ann_file = "/data/nihcc/FCOS/csv_files_datasets/target_combined_test.csv"  #target_combined_train, target_combined_test
+        ann_file = "/data/nihcc/FCOS/csv_files_datasets/target_combined_train.csv"  #target_combined_train, target_combined_test
      
         self.loadinfo(ann_file)
         self.image_fn_list, self.lesion_idx_grouped = self.load_split_index()
