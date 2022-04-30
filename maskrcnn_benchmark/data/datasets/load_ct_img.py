@@ -86,7 +86,7 @@ def load_multislice_img_16bit_png(data_dir, imname, slice_intv, do_clip, num_sli
     
     ims = [im_cur]
     # find neighboring slices of im_cure
-    rel_pos = float(cfg.INPUT.SLICE_INTV) / slice_intv
+    rel_pos = float(cfg.INPUT.SLICE_INTV) / float(slice_intv)
     a = rel_pos - np.floor(rel_pos)
     b = np.ceil(rel_pos) - rel_pos
     if a == 0:  # required SLICE_INTV is a divisible to the actual slice_intv, don't need interpolation
