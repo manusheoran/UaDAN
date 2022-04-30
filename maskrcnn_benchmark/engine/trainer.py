@@ -135,8 +135,14 @@ def do_da_train(
     model.train()
     start_training_time = time.time()
     end = time.time()
+    
+    # target dataloader
+    data_loader_target = target_data_loader["target"]
+    #data_loader_target_fewshot = target_data_loader["target_fewshot"]
+    #data_loader_target_pseudo = target_data_loader["target_pseudo"]  
+    
     for iteration, ((source_images, source_targets, idx1), (target_images, target_targets, idx2)) in enumerate(
-            zip(source_data_loader, target_data_loader), start_iter):
+            zip(source_data_loader, data_loader_target), start_iter):
         data_time = time.time() - end
         arguments["iteration"] = iteration
 
