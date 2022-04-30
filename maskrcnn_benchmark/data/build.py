@@ -160,10 +160,10 @@ def make_data_loader(cfg, is_train=True, is_source=True, is_distributed=False, s
         if cfg.MODEL.DOMAIN_ADAPTATION_ON:
             dataset_list = cfg.DATASETS.SOURCE_TRAIN if is_source else cfg.DATASETS.TARGET_TRAIN
             
-        if is_fewshot:
-            dataset_list = cfg.DATASETS.TRAIN_TARGET_fewshot
-        if is_pseudo:
-            dataset_list = cfg.DATASETS.TRAIN_TARGET_pseudo    
+#         if is_fewshot:
+#             dataset_list = cfg.DATASETS.TRAIN_TARGET_fewshot
+#         if is_pseudo:
+#             dataset_list = cfg.DATASETS.TRAIN_TARGET_pseudo    
             
         else:
             dataset_list = cfg.DATASETS.TRAIN
