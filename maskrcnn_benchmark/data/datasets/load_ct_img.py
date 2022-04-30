@@ -83,29 +83,29 @@ def load_multislice_img_16bit_png(data_dir, imname, slice_intv, do_clip, num_sli
 #     if cfg.INPUT.SLICE_INTV == 0 or np.isnan(slice_intv) or slice_intv < 0:
 #         ims = [im_cur] * num_slice  # only use the central slice
 
+    
+    ims = [im_cur]
+    # find neighboring slices of im_cure
+    rel_pos = float(cfg.INPUT.SLICE_INTV) / slice_intv
+    a = rel_pos - np.floor(rel_pos)
+    b = np.ceil(rel_pos) - rel_pos
+    if a == 0:  # required SLICE_INTV is a divisible to the actual slice_intv, don't need interpolation
+        for p in range(int((num_slice-1)/2)):
+            im_prev = _load_data(imname, - rel_pos * (p + 1))
+            im_next = _load_data(imname, rel_pos * (p + 1))
+            ims = [im_prev] + ims + [im_next]
     else:
-        ims = [im_cur]
-        # find neighboring slices of im_cure
-        rel_pos = float(cfg.INPUT.SLICE_INTV) / slice_intv
-        a = rel_pos - np.floor(rel_pos)
-        b = np.ceil(rel_pos) - rel_pos
-        if a == 0:  # required SLICE_INTV is a divisible to the actual slice_intv, don't need interpolation
-            for p in range(int((num_slice-1)/2)):
-                im_prev = _load_data(imname, - rel_pos * (p + 1))
-                im_next = _load_data(imname, rel_pos * (p + 1))
-                ims = [im_prev] + ims + [im_next]
-        else:
-            for p in range(int((num_slice-1)/2)):
-                intv1 = rel_pos*(p+1)
-                slice1 = _load_data(imname, - np.ceil(intv1))
-                slice2 = _load_data(imname, - np.floor(intv1))
-                im_prev = a * slice1 + b * slice2  # linear interpolation
+        for p in range(int((num_slice-1)/2)):
+            intv1 = rel_pos*(p+1)
+            slice1 = _load_data(imname, - np.ceil(intv1))
+            slice2 = _load_data(imname, - np.floor(intv1))
+            im_prev = a * slice1 + b * slice2  # linear interpolation
 
-                slice1 = _load_data(imname, np.ceil(intv1))
-                slice2 = _load_data(imname, np.floor(intv1))
-                im_next = a * slice1 + b * slice2
+            slice1 = _load_data(imname, np.ceil(intv1))
+            slice2 = _load_data(imname, np.floor(intv1))
+            im_next = a * slice1 + b * slice2
 
-                ims = [im_prev] + ims + [im_next]
+            ims = [im_prev] + ims + [im_next]
 
     ims = [im.astype(float) for im in ims]
     im = cv2.merge(ims)
