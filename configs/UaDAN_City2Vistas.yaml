@@ -1,5 +1,5 @@
 #OUTPUT_DIR: 'outputs/UaDAN_City2Vistas'
-OUTPUT_DIR: '/data/nihcc/FCOS/UaDAN/UDA/LiTS/exp1'
+OUTPUT_DIR: '/data/nihcc/FCOS/UaDAN/FDA/LiTS/exp1'
 MODEL:
   ENT_WEIGHTED_ON_RCNN_INTER: True
   ENT_WEIGHTED_ON_RPN: True
@@ -27,6 +27,8 @@ DATASETS:
   TRAIN: ("DeepLesion_train",)
   SOURCE_TRAIN: ("DeepLesion_train",)
   TARGET_TRAIN: ("lits_train",)
+  TARGET_TRAIN_fewshot: ("target_train_fewshot", )
+  TARGET_TRAIN_pseudo: ("target_train_pseudo", )
   TEST: ("kits_train","lits_train","ircadb_train","combined_train")
 INPUT:
   MIN_SIZE_TRAIN: (1024,)
