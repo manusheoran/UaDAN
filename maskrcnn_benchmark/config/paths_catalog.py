@@ -262,7 +262,7 @@ class DatasetCatalog(object):
                 ann_file=os.path.join(data_dir, attrs["ann_file"]),
             )
             return dict(
-                factory="DeepLesionDataset",
+                factory="DL_target_combinedDataset",
                 args=args,
             )
         if "combined" in name:
