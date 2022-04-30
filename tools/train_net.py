@@ -59,19 +59,49 @@ def train(cfg, local_rank, distributed):
     checkpoint_period = cfg.SOLVER.CHECKPOINT_PERIOD
 
     if cfg.MODEL.DOMAIN_ADAPTATION_ON:
+        
         source_data_loader = make_data_loader(
             cfg,
             is_train=True,
             is_source=True,
             is_distributed=distributed,
             start_iter=arguments["iteration"],
+            is_fewshot = False,
+            is_pseudo = False,
         )
-        target_data_loader = make_data_loader(
+        ################################################################### 
+        ############# to add FDA/ TiLDDA into DA code #######################
+        ################################################################### 
+        target_data_loader = {}
+        
+        target_data_loader["target"] = make_data_loader(
             cfg,
             is_train=True,
             is_source=False,
             is_distributed=distributed,
             start_iter=arguments["iteration"],
+            is_fewshot = False,
+            is_pseudo = False,
+        )
+        
+        target_data_loader["target_fewshot"] = make_data_loader(
+            cfg,
+            is_train=True,
+            is_source=False,
+            is_distributed=distributed,
+            start_iter=arguments["iteration"],
+            is_fewshot = True,
+            is_pseudo = False,
+        )
+        
+        target_data_loader["target_pseudo"] = make_data_loader(
+            cfg,
+            is_train=True,
+            is_source=False,
+            is_distributed=distributed,
+            start_iter=arguments["iteration"],
+            is_fewshot = False,
+            is_pseudo = True,
         )
 
         do_da_train(
