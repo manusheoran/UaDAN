@@ -105,7 +105,7 @@ def make_batch_data_sampler(
     return batch_sampler
 
 
-def make_data_loader(cfg, is_train=True, is_source=True, is_distributed=False, start_iter=0):
+def make_data_loader(cfg, is_train=True, is_source=True, is_distributed=False, start_iter=0, is_fewshot = False, is_pseudo = False):
     num_gpus = get_world_size()
     if is_train:
         images_per_batch = cfg.SOLVER.IMS_PER_BATCH
@@ -159,6 +159,12 @@ def make_data_loader(cfg, is_train=True, is_source=True, is_distributed=False, s
     if is_train:
         if cfg.MODEL.DOMAIN_ADAPTATION_ON:
             dataset_list = cfg.DATASETS.SOURCE_TRAIN if is_source else cfg.DATASETS.TARGET_TRAIN
+            
+        if is_fewshot:
+            dataset_list = cfg.DATASETS.TRAIN_TARGET_fewshot
+        if is_pseudo:
+            dataset_list = cfg.DATASETS.TRAIN_TARGET_pseudo    
+            
         else:
             dataset_list = cfg.DATASETS.TRAIN
     else:
