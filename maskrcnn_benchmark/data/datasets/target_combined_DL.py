@@ -30,7 +30,7 @@ class DL_target_combinedDataset(object):
         self.classes = ['__background__',  # always index 0
                         'lesion']
         self.num_classes = len(self.classes)
-        ann_file = "/data/nihcc/FCOS/csv_files_datasets/DL_all_train_target_combined_fewshot_train.csv"  #DL_all_train_lits_fewshot_10patients, lits_keyslice_test
+        ann_file = "/data/nihcc/FCOS/csv_files_datasets/DL_all_train_target_lits_10patients_X3_train.csv"  #DL_all_train_lits_fewshot_10patients, lits_keyslice_test
         #ann_file = "/gdrive/MyDrive/TCS/LiTS/lits_keyslice_test.csv"  # lits_train, lits_keyslice_train , lits_fewshot_keyslice_train
         self.loadinfo(ann_file)
         self.image_fn_list, self.lesion_idx_grouped = self.load_split_index()
