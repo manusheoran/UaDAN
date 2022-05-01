@@ -22,6 +22,10 @@ def build_d2transforms(image,bbox):
 
   return image,annos
 def build_transforms(cfg, is_train=True):
+    if 'DeepLesion' in cfg.DATASETS.TRAIN[0]:
+        return None 
+    if 'LiTS' in cfg.DATASETS.TRAIN[0]:
+        return None
     if 'DeepLesion' in cfg.DATASETS.SOURCE_TRAIN[0]:
         return None 
     if 'train' in cfg.DATASETS.TARGET_TRAIN[0]:
