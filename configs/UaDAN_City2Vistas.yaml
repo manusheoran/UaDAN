@@ -1,5 +1,5 @@
 #OUTPUT_DIR: 'outputs/UaDAN_City2Vistas'
-OUTPUT_DIR: '/data/nihcc/FCOS/UaDAN/FDA/combined/exp3'
+OUTPUT_DIR: '/data/nihcc/FCOS/UaDAN/lits_only'
 MODEL:
   ENT_WEIGHTED_ON_RCNN_INTER: True
   ENT_WEIGHTED_ON_RPN: True
@@ -7,7 +7,7 @@ MODEL:
   META_ARCHITECTURE: "GeneralizedRCNN"
   MASK_ON: False
   WEIGHT: "/data/nihcc/FCOS/UaDAN/DL_only/ep10.pth"   #"catalog://ImageNetPretrained/MSRA/R-50", "/data/nihcc/FCOS/UaDAN/DL_only/ep10.pth"
-  DOMAIN_ADAPTATION_ON: True
+  DOMAIN_ADAPTATION_ON: False
   RPN:
     PRE_NMS_TOP_N_TEST: 6000
     POST_NMS_TOP_N_TEST: 1000
@@ -24,7 +24,7 @@ MODEL:
 DATALOADER:
   SIZE_DIVISIBILITY: 32
 DATASETS:
-  TRAIN: ("DeepLesion_train",)
+  TRAIN: ("lits_train",)
   SOURCE_TRAIN: ("DeepLesion_train",)
   TARGET_TRAIN: ("combined_train",)
   TEST: ("lits_train",)
@@ -35,11 +35,60 @@ INPUT:
   MIN_SIZE_TEST: 1024
   MAX_SIZE_TEST: 2048
 SOLVER:
-  CHECKPOINT_PERIOD: 11250
+  CHECKPOINT_PERIOD: 2559
   BASE_LR: 0.001
   WEIGHT_DECAY: 0.0005
-  STEPS: (56250,90000)
-  MAX_ITER: 112500
+  STEPS: (20472,35826)
+  MAX_ITER: 40944
   IMS_PER_BATCH: 2
 TEST:
   IMS_PER_BATCH: 1
+  
+  
+  
+#   #OUTPUT_DIR: 'outputs/UaDAN_City2Vistas'
+# OUTPUT_DIR: '/data/nihcc/FCOS/UaDAN/FDA/combined/exp3'
+# MODEL:
+#   ENT_WEIGHTED_ON_RCNN_INTER: True
+#   ENT_WEIGHTED_ON_RPN: True
+#   ENT_WEIGHTED_ON: True
+#   META_ARCHITECTURE: "GeneralizedRCNN"
+#   MASK_ON: False
+#   WEIGHT: "/data/nihcc/FCOS/UaDAN/DL_only/ep10.pth"   #"catalog://ImageNetPretrained/MSRA/R-50", "/data/nihcc/FCOS/UaDAN/DL_only/ep10.pth"
+#   DOMAIN_ADAPTATION_ON: True
+#   RPN:
+#     PRE_NMS_TOP_N_TEST: 6000
+#     POST_NMS_TOP_N_TEST: 1000
+#   ROI_BOX_HEAD:
+#     NUM_CLASSES: 2
+#   ROI_HEADS:
+#     BATCH_SIZE_PER_IMAGE: 256
+#     NMS: 0.3
+#   DA_HEADS:
+#     DA_IMG_LOSS_WEIGHT: 1.0
+#     DA_INS_LOSS_WEIGHT: 0.5
+#     DA_IMG_GRL_WEIGHT: 0.1
+#     DA_INS_GRL_WEIGHT: 0.1
+# DATALOADER:
+#   SIZE_DIVISIBILITY: 32
+# DATASETS:
+#   TRAIN: ("DeepLesion_train",)
+#   SOURCE_TRAIN: ("DeepLesion_train",)
+#   TARGET_TRAIN: ("combined_train",)
+#   TEST: ("lits_train",)
+#   #TEST: ("kits_train","lits_train","ircadb_train","combined_train")
+# INPUT:
+#   MIN_SIZE_TRAIN: (1024,)
+#   MAX_SIZE_TRAIN: 2048
+#   MIN_SIZE_TEST: 1024
+#   MAX_SIZE_TEST: 2048
+# SOLVER:
+#   CHECKPOINT_PERIOD: 11250
+#   BASE_LR: 0.001
+#   WEIGHT_DECAY: 0.0005
+#   STEPS: (56250,90000)
+#   MAX_ITER: 112500
+#   IMS_PER_BATCH: 2
+# TEST:
+#   IMS_PER_BATCH: 1
+
