@@ -1,5 +1,5 @@
 #OUTPUT_DIR: 'outputs/UaDAN_City2Vistas'
-OUTPUT_DIR: '/data/nihcc/FCOS/UaDAN/FDA/combined/exp1'
+OUTPUT_DIR: '/data/nihcc/FCOS/UaDAN/FDA/combined/exp2'
 MODEL:
   ENT_WEIGHTED_ON_RCNN_INTER: True
   ENT_WEIGHTED_ON_RPN: True
